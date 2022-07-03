@@ -52,7 +52,7 @@ k. levchenko               : 3
 d. mccoy                   : 3
            ...
 ```
-```java
+```
 author;paper;citations
 d. ron a. shamir;quantitative analysis of the full bitcoin transaction graph;3
 m. ober,s. katzenbeisser,k. hamacher;structure and anonymity of the bitcoin transaction graph;3

@@ -105,31 +105,33 @@ for fileReader in files:
 
 
      
-    
-author_count = {}
-for author in all_authors:
-    if author in author_count.keys():
-        author_count[author] += 1
-    else:
-        author_count[author] = 1
-author_count = dict(sorted(author_count.items(), key=lambda item: item[1], reverse=True))
-print("\nMost cited authors: ")
-for i in author_count.keys():
-    print("{:<27}: {:<3}".format(i,author_count[i]))
+if len(all_authors) > 0:    
+    author_count = {}
+    for author in all_authors:
+        if author in author_count.keys():
+            author_count[author] += 1
+        else:
+            author_count[author] = 1
+    author_count = dict(sorted(author_count.items(), key=lambda item: item[1], reverse=True))
+    print("\nMost cited authors: ")
+    for i in author_count.keys():
+        print("{:<27}: {:<3}".format(i,author_count[i]))
 
 
-paper_count = dict(sorted(papers.items(), key=lambda item: item[1], reverse=True))
+    paper_count = dict(sorted(papers.items(), key=lambda item: item[1], reverse=True))
 
-df = pd.DataFrame.from_dict(paper_count, orient="index", columns=["citations"])
-df = df.reset_index().rename(columns={'index': 'paper'})
+    df = pd.DataFrame.from_dict(paper_count, orient="index", columns=["citations"])
+    df = df.reset_index().rename(columns={'index': 'paper'})
 
-# MAP AUTHORS
-for i, j in df.iterrows():
-    if j["paper"] in authorsOf.keys():
-        df.loc[i, "author"] = ",".join(authorsOf[j["paper"]])
- 
-col = df.pop("author")
-df.insert(0, col.name, col)
-    
-# SAVE
-df.to_csv("paper_summary.csv", index=None, sep=";")        
+    # MAP AUTHORS
+    for i, j in df.iterrows():
+        if j["paper"] in authorsOf.keys():
+            df.loc[i, "author"] = ",".join(authorsOf[j["paper"]])
+
+    col = df.pop("author")
+    df.insert(0, col.name, col)
+
+    # SAVE
+    df.to_csv("paper_summary.csv", index=None, sep=";")        
+else:
+    print("No references found in the selected papers")

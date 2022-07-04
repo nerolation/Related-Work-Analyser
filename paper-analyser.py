@@ -12,10 +12,10 @@ for fp in file_paths:
     
     file = open(fp, 'rb')
     
-    fileReader = PyPDF2.PdfFileReader(file)
+    fileReader = PyPDF2.PdfFileReader(file, strict=False)
     files.append(fileReader)
 
-    print(f"Reading {fp.split("/")[-1]} with {fileReader.numPages} pages")
+    print("Reading {} with {} pages".format(fp.split("/")[-1], fileReader.numPages))
     
     if "non_ieee" in fp:
         journal.append("other")

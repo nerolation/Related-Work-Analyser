@@ -9,12 +9,9 @@ file_paths = filedialog.askopenfilenames()
 files  = []
 journal = []
 for fp in file_paths:
-    
-    file = open(fp, 'rb')
-    
+    file = open(fp, 'rb')   
     fileReader = PyPDF2.PdfFileReader(file, strict=False)
     files.append(fileReader)
-
     print("Reading {} with {} pages".format(fp.split("/")[-1], fileReader.numPages))
     
     if "non_ieee" in fp:
@@ -25,12 +22,7 @@ for fp in file_paths:
     else:
         journal.append("ieee")
     
-    
-papers = {}
-cited = {}
-authorsOf = {}
-all_authors = []
-first_authors = []
+
 
 def get_lastname(s):
     s = s.split(" ")
@@ -87,6 +79,15 @@ def parse_ieee(ref):
 
 
 
+
+    
+papers = {}
+cited = {}
+authorsOf = {}
+all_authors = []
+first_authors = []
+
+
 # LOOP OVER FILES
 for fileNumber, fileReader in enumerate(files):
     
@@ -120,7 +121,6 @@ for fileNumber, fileReader in enumerate(files):
             if len(refs) < 3:
                 refs = re.split("[0-9]+\.",text)
 
-
         if not start:
             continue
 
@@ -150,8 +150,7 @@ for fileNumber, fileReader in enumerate(files):
                         print("No success parsing ref:")
                         print(ref)
                         continue
-
-        
+       
             if "" in authors:
                 authors.remove("")
             
@@ -187,8 +186,7 @@ for fileNumber, fileReader in enumerate(files):
 
     print(f"References found: {len(papers.keys())-t0}")
 
-
-     
+    
 if len(all_authors) > 0:    
     author_count = {}
     for author in all_authors:

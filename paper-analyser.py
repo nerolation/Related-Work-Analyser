@@ -41,7 +41,7 @@ for fileReader in files:
 
         # IF REFERENCES IS FOUND - SLICE PAGE FOR EVERYTHING AFTER REFERENCES AND THEN PARSE 
         if "\nreferences\n" in page.extract_text().lower():
-            start = Thttps://github.com/Nerolation/Related-Work-Analyserrue
+            start = True
             text = page.extract_text().lower().split("\nreferences\n")[1]
             refs = re.split("\[[0-9]+\]",text)
             #print(text)

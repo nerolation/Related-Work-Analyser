@@ -40,19 +40,19 @@ Add "springer" to the file name of the Springer paper to indicate not looking fo
 
 ```java
 Most cited authors: 
-s. meiklejohn              : 5  
-t. rufﬁng                  : 5  
-p. moreno-sanchez          : 5  
-a. kate                    : 5  
-c. garman                  : 5  
-m. green                   : 5  
-i. miers                   : 5  
-d. chaum                   : 4  
-d. ron                     : 3  
-m. pomarole                : 3  
-g. jordan                  : 3  
-k. levchenko               : 3  
-d. mccoy                   : 3
+meiklejohn              : 5  
+rufﬁng                  : 5  
+moreno-sanchez          : 5  
+kate                    : 5  
+garman                  : 5  
+green                   : 5  
+miers                   : 5  
+chaum                   : 4  
+ron                     : 3  
+pomarole                : 3  
+jordan                  : 3  
+levchenko               : 3  
+mccoy                   : 3
            ...
 ```
 ```

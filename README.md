@@ -11,7 +11,6 @@ Select multiple research papers form local system, run the analysis and receive 
 ## Installation
 ```
 git clone https://github.com/Nerolation/Related-Work-Analyser.git
-
 ```
 ### Create Virtual Environment (optional)
 

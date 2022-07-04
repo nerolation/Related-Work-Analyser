@@ -3,9 +3,9 @@
 * **Receive an overview of the most relevant literature in a certain domain**
 * **Never miss out any relevant paper in your Related Work section**
 
-#### Research-Paper-Analyser Python tool to analyse the references of IEEE-style papers. The tool allows to parse multiple papers and produces a summary of the references found. The tool logs the most cited authors and creates a report with the most referenced papers. 
+#### Research-Paper-Analyser is a Python tool to analyse the references of IEEE-style papers. It allows to parse multiple papers and produces a summary of the references found. The tool logs the most cited authors and creates a report with the most referenced papers. 
 
-Select multiple research papers form local system, run analysisand receive summary of references (most cited authors and papers)
+Select multiple research papers form local system, run the analysis and receive summary of references (most cited authors and papers)
 
 
 ## Installation
@@ -45,7 +45,7 @@ c. garman                  : 5
 m. green                   : 5  
 i. miers                   : 5  
 d. chaum                   : 4  
-d. ron a. shamir           : 3  
+d. ron                     : 3  
 m. pomarole                : 3  
 g. jordan                  : 3  
 k. levchenko               : 3  
@@ -54,7 +54,7 @@ d. mccoy                   : 3
 ```
 ```
 author;paper;citations
-d. ron a. shamir;quantitative analysis of the full bitcoin transaction graph;3
+d. ron;quantitative analysis of the full bitcoin transaction graph;3
 m. ober,s. katzenbeisser,k. hamacher;structure and anonymity of the bitcoin transaction graph;3
 a. miller,j. bonneau,j. clark,e. w. felten,a. narayanan,j. a. kroll;mixcoin: anonymity for bitcoin with accountable mixes;3
 s. meiklejohn,d. mccoy,m. pomarole,s. savage,g. m. voelker,g. jordan,k. levchenko;a ﬁstful of bitcoins: characterizing payments among men with no names;2

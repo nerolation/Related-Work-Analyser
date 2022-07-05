@@ -3,7 +3,7 @@
 * **Receive an overview of the most relevant literature in a certain domain**
 * **Never miss out any relevant paper in your Related Work section**
 
-#### Research-Paper-Analyser is a Python tool to analyse the references of IEEE and Springer-style papers. It allows to parse multiple papers and produces a summary of the references found. The tool logs the most cited authors and creates a report with the most referenced papers. 
+#### Research-Paper-Analyser is a Python tool to analyse the references of most IEEE, Springer and ACM-style papers. It allows to parse multiple papers and produces a summary of the references found. The tool logs the most cited authors and creates a report with the most referenced papers. 
 
 Select multiple research papers form local system, run the analysis and receive summary of references (most cited authors and papers)
 
@@ -34,7 +34,7 @@ python3 paper-analyser.py
 
 ### Springer-style papers
 
-Add "springer" to the file name of the Springer paper to indicate not looking for the default IEEE reference style, but for Springer-style references.
+Add "springer" to the file name of the Springer paper to indicate not looking for the default IEEE reference style, but for Springer-style references. For ACM papers or any other paper that may not work add "non_ieee" to the filename.
 
 ### Example Output 
 

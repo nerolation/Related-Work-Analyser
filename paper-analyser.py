@@ -58,7 +58,27 @@ def parse_springer(ref):
         year = None
     return title, authors, year
         
+def parse_acm(ref):
+    global papers
+    
+    title = re.sub("\n|,", " ",re.split('[0-9]{4}\.', ref)[1].split(".")[0]).strip().lower()
+    if title in papers.keys():
+        papers[title] += 1
+    else:
+        papers[title] = 1
 
+    # GET AUTHOR
+    authors = re.sub("\n", " ",re.split('[0-9]{4}\.', ref)[0]).strip().split(",")
+
+    # GET LAST ELEMENT, MOST LIKELY THE YEAR
+    if len(re.findall('[0-9]{4}\.', ref)) > 0 :
+        year = re.findall('[0-9]{4}\.', ref)[0].strip()
+    else:
+        year = None
+        
+    return title, authors, year
+    
+    
 def parse_ieee(ref):
     global papers
     
@@ -77,8 +97,8 @@ def parse_ieee(ref):
     year = re.sub("\.", " ",re.split(' ', ref)[-1]).strip()
     return title, authors, year
 
-def get_scholar_link(x):
-    return "https://scholar.google.at/scholar?q={}".format(x.replace(" ", "%20"))
+def get_scholar_link(x, y):
+    return "https://scholar.google.at/scholar?q={}%20{}".format(str(x).replace(" ", "%20"), str(y).replace(",", "%20"))
 
     
 papers = {}
@@ -86,7 +106,7 @@ cited = {}
 authorsOf = {}
 all_authors = []
 first_authors = []
-
+failed = []
 
 # LOOP OVER FILES
 for fileNumber, fileReader in enumerate(files):
@@ -147,9 +167,11 @@ for fileNumber, fileReader in enumerate(files):
                     try:
                         title, authors,year = parse_springer(ref)
                     except:
-                        print("No success parsing ref:")
-                        print(ref)
-                        continue
+                        try:
+                            title, authors,year = parse_acm(ref)
+                        except:
+                            failed.append(ref)
+                            continue
        
             if "" in authors:
                 authors.remove("")
@@ -172,7 +194,8 @@ for fileNumber, fileReader in enumerate(files):
             # GET FULL LIST AUTHORS
             for a in authors:
                 a = a.lower()
-                a = a.replace("and ", " ").replace("et al.", "").replace(".", "").replace(",", "").replace("  ", " ").strip()
+                a = a.replace("and ", " ").replace("et al.", "").replace(".", "")
+                a = a.replace(",", "").replace("  ", " ").replace("et","").replace("al","").strip()
                 a = get_lastname(a)
                 a = "".join(re.findall("([a-z]+)", a))
                 if len(a) > 1:
@@ -213,9 +236,11 @@ if len(all_authors) > 0:
     col = df.pop("author")
     df.insert(0, col.name, col)
     
-    df["google_scholar"] = df["paper"].apply(get_scholar_link)
+    df["google_scholar"] = df.apply(lambda x: get_scholar_link(x["paper"], x["author"]), axis = 1)
+    
 
     # SAVE
-    df.to_csv("paper_summary.csv", index=None, sep=";")        
+    df.to_csv("paper_summary.csv", index=None, sep=";")   
+    pd.DataFrame(failed).to_csv("failed_refs.csv")
 else:
     print("No references found in the selected papers")

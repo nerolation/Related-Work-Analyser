@@ -77,8 +77,8 @@ def parse_ieee(ref):
     year = re.sub("\.", " ",re.split(' ', ref)[-1]).strip()
     return title, authors, year
 
-
-
+def get_scholar_link(x):
+    return "https://scholar.google.at/scholar?q={}".format(x.replace(" ", "%20"))
 
     
 papers = {}
@@ -212,6 +212,8 @@ if len(all_authors) > 0:
 
     col = df.pop("author")
     df.insert(0, col.name, col)
+    
+    df["google_scholar"] = df["paper"].apply(get_scholar_link)
 
     # SAVE
     df.to_csv("paper_summary.csv", index=None, sep=";")        

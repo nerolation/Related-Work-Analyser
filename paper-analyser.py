@@ -195,7 +195,7 @@ for fileNumber, fileReader in enumerate(files):
             for a in authors:
                 a = a.lower()
                 a = a.replace("and ", " ").replace("et al.", "").replace(".", "")
-                a = a.replace(",", "").replace("  ", " ").replace("et","").replace("al","").strip()
+                a = a.replace(",", "").replace("  ", " ").replace("et ","").replace(" al","").strip()
                 a = get_lastname(a)
                 a = "".join(re.findall("([a-z]+)", a))
                 if len(a) > 1:

@@ -132,7 +132,12 @@ for fileNumber, fileReader in enumerate(files):
                 _refheading = "\nreferences\n"
             elif "\nr\neferences\n" in text:
                 _refheading =  "\nr\neferences\n"
+            elif "r\neferences\n" in text:
+                _refheading =  "r\neferences\n"
+            elif " references\n" in text:
+                _refheading =  " references\n"
             else:
+                #print(text)
                 continue
 
             start = True
